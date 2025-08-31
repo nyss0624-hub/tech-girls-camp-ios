@@ -13,5 +13,5 @@ struct CalculatorApp: App {
         WindowGroup {
             CalculatorView()
         }
+        }
     }
-}

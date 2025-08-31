@@ -13,6 +13,9 @@ struct CalculatorView: View {
     @State var firstNumber: String = ""
     @State var secondNumber: String = ""
     @State var result: String = "?"
+    @State var thirdNumber: String = ""
+    @State var forthNumber: String = ""
+    @State var result2: String = "?"
     
     var body: some View {
         VStack(spacing: 20) {
@@ -52,9 +55,6 @@ struct CalculatorView: View {
             
             // 計算ボタン
             Button(action: {
-                // ここでボタンを押した時の挙動を記述
-                // 今回は calculateSum() というメソッド(関数)を呼び出しています
-                // 具体的な処理は calculateSum() 内に記述します
                 calculateSum()
             }) {
                 Text("計算する")
@@ -66,15 +66,59 @@ struct CalculatorView: View {
                     .cornerRadius(10)
             }
             .padding(.horizontal)
-
+            
             Spacer()
+            
+            Text("引き算電卓")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            HStack(spacing: 10){
+                
+                TextField("?", text: $thirdNumber)
+                    .keyboardType(.numberPad)
+                    .frame(width: 60)
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Text("-")
+                    .font(.title)
+                
+                TextField("?", text: $forthNumber)
+                    .keyboardType(.numberPad)
+                    .frame(width: 60)
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Text("=")
+                    .font(.title)
+                
+                Text(result2)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .frame(width: 100)
+                    .multilineTextAlignment(.center)
+                
+                Button(action: {
+                    calculateSum2()
+                }){
+                    Text("計算する")
+                        .fontWeight(.bold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+                
+            }
         }
         .padding()
         
         Divider()
-        
-        // TODO: - Challenge2
-        // 引き算電卓も作ってみよう
         
     }
     
@@ -82,8 +126,21 @@ struct CalculatorView: View {
     func calculateSum() {
         // TODO: - Challenge1
         // ここに計算ロジックを記述し、計算結果を表示できるようにしてみよう
-
+        if let firstNumberDouble = Double(firstNumber), let secondNumberDouble = Double(secondNumber){
+            let resultDouble = firstNumberDouble + secondNumberDouble
+            result = String(resultDouble)}else{result = "error"}
     }
+    
+    func calculateSum2() {
+        if let thirdNumberDouble = Double(thirdNumber), let forthNumberDouble = Double(forthNumber){
+            let resultDouble2 = thirdNumberDouble - forthNumberDouble
+            result2 = String(resultDouble2)
+        }else{
+            result2 = "error"
+        }
+        
+    }
+    
 }
 
 #Preview {
