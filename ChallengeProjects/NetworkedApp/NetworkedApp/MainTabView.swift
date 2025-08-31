@@ -13,6 +13,11 @@ struct MainTabView: View {
                     Image(systemName:"star.fill")
                     Text("Favorites")
                 }
+            TodayCoffee()
+                .tabItem{
+                    Image(systemName:"sunrise.fill")
+                    Text("Today's Coffee")
+                }
         }
     }
 }
