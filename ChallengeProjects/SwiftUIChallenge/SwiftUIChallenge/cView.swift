@@ -9,7 +9,26 @@ import SwiftUI
 
 struct cView: View {
     var body: some View {
-        Text("C. テキストを四角形の左下に配置")
+        ZStack{
+            Rectangle()
+                .fill(Color.green)
+                .frame(width: 200, height: 100)
+            VStack{
+                Text(" ")
+                
+                Text(" ")
+                
+                Text(" ")
+                
+                HStack{
+                    
+                    Text("hello world")
+                        .foregroundColor(.white)
+                    Text("                     ")
+                }
+
+                }
+        }
     }
 }
 
